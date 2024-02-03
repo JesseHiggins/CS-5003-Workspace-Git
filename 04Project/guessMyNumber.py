@@ -7,7 +7,9 @@ import random
 import math
 import sys
 
-def guessHighLow(number, guess, max):
+turns = 0
+
+def guessHighLow(number, guess):
     ''' compares guess to number and prints if it is high or low and returns difference
         params: none
         return: previousdifference
@@ -19,7 +21,7 @@ def guessHighLow(number, guess, max):
     previousdifference = abs(number - guess)
     return previousdifference
 
-def guessHotCold(previousdifference, number, guess, max):
+def guessHotCold(previousdifference, number, guess):
     ''' compares difference in guess to previous difference and prints hot or cold
         params: previousdifference
         return: none
@@ -30,10 +32,25 @@ def guessHotCold(previousdifference, number, guess, max):
     if difference > previousdifference:
          print("Cold")
 
+def efficientGuess(number, guess, maxturn):
+    ''' counts number of turns and evaluates if efficient when correct
+        params: none
+        returns: none'''
+    global turns 
+    if number == guess and turns <= maxturn:
+        print("Efficient")
+    if number == guess and turns > maxturn:
+         print("Not Efficient")
+
+    turns = turns + 1
+    print("Number of turns: ", turns)
+    
+
 def main():
 
-    max = 100
-    #max = int(sys.argv[1])
+    #Command line argument for max and find maxturns for efficientGuess
+    max = int(sys.argv[2])
+    maxturn = math.log2(max)
 
     #Assigns random value 1-max to number
     number = random.randint(0, max)
@@ -44,14 +61,17 @@ def main():
     #Loop conditional to validate user input
     while guess < 0 or guess > max:
         guess = int(input("Please guess a number 0 - " + str(max) + ": "))
+
     #Loop to run guessing game with functions
     while number != guess:
-        previousdifference = guessHighLow(number, guess, max)
+        efficientGuess(number, guess, maxturn)
+        previousdifference = guessHighLow(number, guess)
         guess = int(input("Guess a number: "))
         while guess < 0 or guess > max:
             guess = int(input("Please guess a number 0 - " + str(max) + ": "))
-        guessHotCold(previousdifference, number, guess, max)
+        guessHotCold(previousdifference, number, guess)
     if guess == number:
+        efficientGuess(number, guess, maxturn)
         print("Correct!")
 
 
