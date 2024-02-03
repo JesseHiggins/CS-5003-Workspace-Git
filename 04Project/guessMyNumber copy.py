@@ -2,30 +2,46 @@
     Jesse Higgins
     1/29/2024
 '''
-guess = int(input("Guess a number: "))
-def guessHighLow(number = 100):
+import random
+import math
+
+def guessHighLow(number):
     ''' compares guess to number and prints if it is high or low and returns difference
         params: none
         return: previousdifference
     '''
-    while guess != number:
-        if guess < number:
+    guess = int(input("Guess a number 1 - 100: "))
+    while guess < 1 or guess > 100:
+        guess = int(input("Please guess a number 1 - 100: "))
+    if guess < number:
             print("Too low")
-        if guess > number:
+    if guess > number:
             print("Too high")
-        previousdifference = number - guess
-    return previousdifference
+    previousdifference = abs(number - guess)
+    return previousdifference, guess
 
-def guessHotCold(previousdifference):
+def guessHotCold(previousdifference, number, guess):
     ''' compares difference in guess to previous difference and prints hot or cold
         params: previousdifference
         return: none
     '''
-    difference = number - guess
+    while guess < 1 or guess > 100:
+        guess = int(input("Please guess a number 1 - 100: "))
+    difference = abs(number - guess)
+    if difference < previousdifference:
+         print("Hot")
+    if difference > previousdifference:
+         print("Cold")
 
 def main():
 
-    guessHighLow()
+    number = random.randint(0,100)
+    previousdifference, guess = guessHighLow(number)
+    while number != guess:
+        guessHotCold(previousdifference, number, guess)
+        previousdifference, guess = guessHighLow(number)
+    if guess == number:
+        print("Correct!")
 
 if __name__ == "__main__":
     main()
