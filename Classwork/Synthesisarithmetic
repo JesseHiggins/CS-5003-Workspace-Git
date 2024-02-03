@@ -1,0 +1,22 @@
+''' Synthesis example for arithmetic expressions
+    Jesse Higgins
+    February 1 2024
+'''
+
+def main():
+
+    #Assign Values to Variables
+    subtotal = 367.48
+    tax = subtotal * .055
+    tip = subtotal * .2
+    party = 7
+    total = subtotal + tax + tip
+
+    #Perform calculations
+    remainder = total % 7
+    partytotal = (total - remainder) / 7
+
+    #Print results
+    print(partytotal, remainder)
+
+main()

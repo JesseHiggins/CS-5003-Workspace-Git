@@ -1,0 +1,19 @@
+''' Synthesis example for conditional statements
+    Jesse Higgins
+    February 1 2024
+'''
+
+# Program to compare prices and determine best price
+def main():
+    
+    pricex = int(input("Input price X: "))
+    pricey = int(input("Input price Y: "))
+
+    if pricex < pricey:
+        print("Buy from provider X.")
+    elif pricey < pricex:
+        print("Buy from provider Y.")
+    else:
+        print("Buy from either provider.")
+
+main()
