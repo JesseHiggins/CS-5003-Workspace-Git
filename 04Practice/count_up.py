@@ -1,6 +1,6 @@
 
 
-def count_up(number, count = 0):
+def count_up(number, count=0):
 
     while count < number:
 

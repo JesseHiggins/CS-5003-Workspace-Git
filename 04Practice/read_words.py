@@ -10,8 +10,9 @@ def non_negatives():
         word = input("Enter a word:")
         if word != "stop":
             words = words + " " + word
-  
+
     print(words)
+
 
 def main():
 

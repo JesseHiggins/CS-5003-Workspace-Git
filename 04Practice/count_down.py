@@ -1,8 +1,8 @@
 
 
-def count_down(count, number = 0):
+def count_down(count, number=0):
 
-    while number < count :
+    while number < count:
 
         print(count)
         count = count - 1
