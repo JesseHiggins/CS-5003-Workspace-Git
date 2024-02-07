@@ -8,7 +8,7 @@ def non_negatives():
 
         print(integer)
         integer = int(input("Enter an integer:"))
-      
+
 
 def main():
 

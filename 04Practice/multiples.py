@@ -1,21 +1,18 @@
 
 
-def non_negatives():
+def multiples():
 
-    word = input("Enter a word:")
-    words = word
+    integer = int(input("Enter a non-zero integer: "))
+    multiple = int(input("Enter multiple: "))
 
-    while word != "stop":
+    while multiple % integer != 0:
 
-        word = input("Enter a word:")
-        if word != "stop":
-            words = words + " " + word
-  
-    print(words)
+        multiple = int(input("Try again: "))
+
 
 def main():
 
-    non_negatives()
+    multiples()
 
 
 if __name__ == "__main__":
