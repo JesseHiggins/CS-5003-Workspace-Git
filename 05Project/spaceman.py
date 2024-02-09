@@ -1,0 +1,1 @@
+list = [actor, adult, anger, beach, birth, cross, crowd, dance, chair, bread, brown, guide, happy, heart, drill, metal, judge, rival, paper, sense, texas]
