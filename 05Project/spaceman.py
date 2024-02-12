@@ -48,7 +48,7 @@ def main():
 
         if prevstate == hidword:
             numguess += 1
-            print("Wrong Guess \n Guesses =", numguess)
+            print("Wrong Guess \n Wrong Guesses =", numguess)
 
         word_check(word, hidword, numguess)
     
