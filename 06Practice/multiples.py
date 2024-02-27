@@ -1,0 +1,10 @@
+
+def main():
+
+    integer = int(input("Enter a positive integer: "))
+    for i in range(1, integer+1):
+        if i % 5 == 0:
+            print(i)
+
+if __name__ == "__main__":
+    main()
