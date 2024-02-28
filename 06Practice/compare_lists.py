@@ -1,10 +1,12 @@
 def compare_lists(list1, list2):
-
+    count = 0
+    list = []
     for i in range(0, len(list1)):
         for j in list2:
             if i == j:
-                count += 1
-    return evenlst
+                list += [list[i]]
+    if list1 = list:
+        return True
 
 def main():
 
