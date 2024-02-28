@@ -125,8 +125,8 @@ def triangle3():
 
 def main():
 
-    triangleRight()
-    # leetSpeak("dont come at me bro")
+    # triangleRight()
+    leetSpeak("dont come at me bro")
 
     # mylist = [1, 2, 3, 4, 5]
     # print(mylist)
