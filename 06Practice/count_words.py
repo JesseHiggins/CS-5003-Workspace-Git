@@ -6,7 +6,7 @@ def count_words():
 
 def main():
 
-    count_words("Hello there how are you?")
+    count_words()
 
 if __name__ == "__main__":
     main()

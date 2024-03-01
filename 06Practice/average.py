@@ -1,11 +1,12 @@
 def calculate_average(list):
     sum = 0
+    average = 0
     for i in range(0, len(list)):
         if list == []:
             average = 0
         else:
             sum += list[i]
-    if list != 0:
+    if list != []:
         average = sum / (len(list))
     return average
 

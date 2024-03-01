@@ -1,3 +1,9 @@
+''' 06Project - simulating a lottery
+    Jesse Higgins
+    CS5001
+    2/25/2024
+'''
+
 import random
 import numpy as np
 import numpy as numpy
@@ -13,13 +19,8 @@ def generateLotteryNumbers():
     Returns a list of 5 random ints between 1 and 42, inclusive, with no
     duplicates.
     """
-    mylist = []
-    integer = random.randint(1, 42)
-    for i in range(5):
-        mylist.append(integer)
-        integer = random.randint(1, 42)
+    mylist = random.sample(range(1,42), 5)
     return mylist
-    pass
 
 
 def countMatches(my_list, lottery_list):
@@ -45,7 +46,7 @@ def playLottery():
     lottery_list = generateLotteryNumbers()
     count = countMatches(my_list, lottery_list)
     reward = 0
-    if count < 1:
+    if count <= 1:
         reward -= 1
     elif count == 2:
         reward += 1
@@ -54,7 +55,7 @@ def playLottery():
     elif count == 4:
         reward += 198
     elif count == 5:
-        reward += 212,535
+        reward += 212535
     
     return reward
     pass
@@ -70,10 +71,10 @@ def getDisparityMessage(highIncomeList, lowIncomeList, decade):
              group.
             *decade: The current decade as an integer.
     """
-    # YOUR CODE HERE
-
-    lowIncomePercent =  # ???
-    highIncomePercent =  # ???
+    sumwealth = sum(highIncomeList) + sum(lowIncomeList)
+    lowIncomePercent = (sum(lowIncomeList) / sumwealth) * 100
+    highIncomePercent = (sum(highIncomeList) / sumwealth) * 100
+    print("Decade ",decade,":"," The high income group possesses ",highIncomePercent, "%"," of the communit's wealth, while the low income group possesses ",lowIncomePercent,"%"," of the community's wealth.")
 
     message = "Decade " + str(decade) + ": The high income group possesses " +\
         str(highIncomePercent) + "% of the community's wealth, while the low"\
@@ -91,8 +92,9 @@ def simLottery(incomeList, numPlayers):
             * numPlayers: The number of players who will play the lottery.
     """
     for i in range(numPlayers):
-        # YOUR CODE HERE
-        pass
+        player = random.randint(1, len(incomeList))
+        incomeList[player - 1] += playLottery()
+    pass
 
 
 def awardScholarship(incomeList, awardTotal):
@@ -104,8 +106,9 @@ def awardScholarship(incomeList, awardTotal):
              to members of this income group.
     """
     for i in range(awardTotal):
-        # YOUR CODE HERE
-        pass
+        recipient = random.randint(1, len(incomeList))
+        incomeList[recipient - 1] += 1
+    pass
 
 
 def simCommunity(years, communitySize):
@@ -123,38 +126,43 @@ def simCommunity(years, communitySize):
     # ---- PART 1: Populate Wealth Lists
     # Fill highIncomeList and lowIncomeList with starting wealth values.
 
-    highIncomeList = []
-    lowIncomeList = []
+    highIncomeList = [100] * int(communitySize/2)
+    lowIncomeList = [99] * int(communitySize/2)
 
     # ---- PART 2: Populate Record Lists
     # Fill highIncomeRecord and lowIncomeRecord with the starting ("year 0")
     # values from highIncomeList and lowIncomeList.
 
-    highIncomeRecord = []
-    lowIncomeRecord = []
+    highIncomeRecord = [highIncomeList]
+    lowIncomeRecord = [lowIncomeList]
 
     # simulation loop
     for i in range(years):
 
-        # ---- PART 3: Play the Lottery
-        # Use the simLottery() function to simulate community
-        # wealth interactions.
+        simLottery(highIncomeList, int(.4 * len(highIncomeList)))
+        simLottery(lowIncomeList, int(.6 * len(lowIncomeList)))
 
         # ---- PART 4: Award Scholarships
         # Use the awardScholarship() function to redistribute lottery funds
         # as scholarships.
-
+        awardScholarship(highIncomeList, int(.7 * len(highIncomeList)))
+        awardScholarship(lowIncomeList, int(.3 * len(lowIncomeList)))
+        
         # ---- PART 5: Update Record Lists
         # Update the income records every year.
+        highIncomeRecord.append(highIncomeList.copy())
+        lowIncomeRecord.append(lowIncomeList.copy())
 
         if i % 10 == 0:
             # ---- PART 6: Display Wealth Distribution
             # Use getDisparityMessage() to display the wealth distribution
             # every decade.
+            getDisparityMessage(highIncomeList, lowIncomeList, i)
             pass
+
     # ---- PART 7: Visualize the Simulation
     # Uncomment the next line to plot the simulation.
-    # plotSim(highIncomeRecord, lowIncomeRecord)
+    plotSim(highIncomeRecord, lowIncomeRecord)
 
 
 # ----------------- HELPER FUNCTIONS ----------------- #
@@ -224,11 +232,13 @@ def simManyPlays(n):
 
 
 def main():
+
+    # simCommunity(50, 20)
     # Simulate 1000 plays by one person and plot the winnings.
-    simManyPlays(1000)
+    # simManyPlays(1000)
 
     # Simulate a community playing Lottery 5 with 30 people for 80 years.
-    # simCommunity(80, 30)
+    simCommunity(80, 30)
 
 if __name__ == "__main__":
     main()
