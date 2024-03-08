@@ -157,7 +157,7 @@ def simCommunity(years, communitySize):
             # ---- PART 6: Display Wealth Distribution
             # Use getDisparityMessage() to display the wealth distribution
             # every decade.
-            getDisparityMessage(highIncomeList, lowIncomeList, i)
+            getDisparityMessage(highIncomeList, lowIncomeList, (i/10))
             pass
 
     # ---- PART 7: Visualize the Simulation
