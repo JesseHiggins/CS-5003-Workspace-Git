@@ -2,14 +2,11 @@
     Jesse Higgins
     02/26/2024
 '''
-def recur_factorial(x):
-    ''' calculates x!
-    params= x - the number
-    returns: x facotiral
-    '''
-    if x == 1:
+def recursive_factorial(n):
+
+    if n == 1:
         return 1
-    return x*recur_factorial(x-1)
+    return n * recursive_factorial(n - 1)
 
 def recur_fib(x):
 
@@ -31,20 +28,28 @@ def sum_up(x, y):
 
     if x == y:
         return x
-    return x + summation(x+1, y)
+    return x + sum_up(x+1, y)
 
-def sum_down(x, y)
+def sum_down(x, y):
     if x == y:
         return x
     return sum_down(x, y-1) + y
 
 # summation(2, 4) + (summation(3, 4) + summation(4, 4))
 
+def mystery(n):
+    print("Before", n)
+    if n < 0:
+        return 2 * n
+    else:
+        return mystery(n - 1) + n
+
 def main():
     # print(recur_factorial(5))
     # print(recur_fib(4))
     # lindsayfib(5)
-    print(summation(2, 4))
+    # print(summation(2, 4))
+    print(mystery(3))
 
 
 
