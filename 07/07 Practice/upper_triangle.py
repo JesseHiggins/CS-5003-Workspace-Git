@@ -1,11 +1,8 @@
 def upper_triangle(n):
 
-    if n == 1:
-        answer = "*" 
-    else:
-        answer = upper_triangle(n-1) * "*"
-        
-    print(answer)
+    if n > 0:
+        print("*" * n)
+        upper_triangle(n-1)
                      
 def main():
 
