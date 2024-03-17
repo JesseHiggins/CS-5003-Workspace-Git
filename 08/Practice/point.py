@@ -17,15 +17,25 @@ class Point:
         if origin is None:
             origin = Point(0, 0, 0)
         
-        distance = math.dist(self, origin)
+        p = (self.x, self.y, self.z)
+        q = (origin.x, origin.y, origin. z)
+
+        distance = math.dist(p, q)
 
         return distance
+
+    def __str__(self):
+        
+        output = f"Point: ({self.x}, {self.y}, {self.z})"
+
+        return output
 
 def main():
 
     point = Point(1, 2, 3)
 
     print(point.get_distance())
+    print(point)
 
 if __name__ == "__main__":
     main()
