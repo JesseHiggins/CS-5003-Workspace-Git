@@ -23,9 +23,15 @@ class testScoop(unittest.TestCase):
         scoop = Scoop(2)
         volume = scoop.volume()
         self.assertAlmostEqual(volume, 33.51032163829)
+    
+    def test_str(self):
+        scoop = Scoop(2)
+        self.assertEqual(print(scoop), print("Volume of scoop is 33.51"))
 
 def main():
 
+    scoop = Scoop(2)
+    print(scoop)
     unittest.main(verbosity = 3)
 
 if __name__ == "__main__":

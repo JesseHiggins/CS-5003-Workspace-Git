@@ -15,6 +15,11 @@ class Scoop:
       Parameters -
          self - the current object
          radius - the radius of the scoop'''
+      # asked permission by raising a type or value error
+      if not isinstance(radius, int):
+        raise TypeError("radius must be an integer value")
+      if radius < 0:
+        raise ValueError("radius must be non-negative integer")
       self.radius = radius
 
    def get_radius(self):
@@ -33,4 +38,8 @@ class Scoop:
       volume = (4/3) * math.pi * (self.radius ** 3)
 
       return volume
+   
+   def __str__(self):
+      output = f"Volume of scoop is {self.volume()}"
+      return output
       

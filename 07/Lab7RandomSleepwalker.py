@@ -1,3 +1,8 @@
+''' Lab7
+    Jesse Higgins
+    March 18 2024
+    Simulate a random sleepwalker and analyze the output of analysis functions
+    '''
 import random
 
 def rs():
@@ -39,9 +44,32 @@ def rwposPlain(start, nsteps):
         return start
     return rwposPlain(start - rs(), nsteps - 1)
 
+def avgSignedDiscplacement(numtrials):
+    '''stores output of rwposPlain(0,100) numtrials times in a liast
+        params: numtrials
+        returns: average of rwposPlain results
+    '''
+
+    list = []
+    list = [rwposPlain(0,100) for x in range(numtrials)]
+    average = sum(list) / len(list)
+    return average
+
+def avgSquaredDiscplacement(numtrials):
+    '''stores output of rwposPlain(0,100) numtrials times in a liast
+        params: numtrials
+        returns: average of rwposPlain results
+    '''
+
+    list = []
+    list = [rwposPlain(0,100) ** 2 for x in range(numtrials)]
+    average = sum(list) / len(list)
+    return average
+
 def main():
 
-    print(rwsteps(40, 35, 45, 0))
+    # print(avgSignedDiscplacement(100000))
+    print(avgSquaredDiscplacement(100000))
 
 if __name__ == "__main__":
     main()
