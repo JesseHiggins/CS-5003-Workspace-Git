@@ -23,7 +23,7 @@ def rwpos(start, nsteps):
         return start
     return rwpos(start - rs(), nsteps - 1)
 
-def rwsteps(start, low, hi, nsteps):
+def rwsteps(start, low, hi, nsteps = 0):
     '''simulate a random walk using rs() until reaches at or beyond low or hi
         params: start - integer parameter indicating starting position, low, hi
         returns: number of steps taken until the sleepwalker reachers at or beyond low or hi
@@ -68,8 +68,8 @@ def avgSquaredDiscplacement(numtrials):
 
 def main():
 
-    # print(avgSignedDiscplacement(100000))
-    print(avgSquaredDiscplacement(100000))
+    print(avgSignedDiscplacement(100))
+    print(avgSquaredDiscplacement(100))
 
 if __name__ == "__main__":
     main()
