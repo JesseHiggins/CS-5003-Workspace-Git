@@ -5,6 +5,10 @@
 
 def recursive_factorial(n):
 
+    if not isinstance(n, int):
+        raise TypeError("n must be an integer")
+    if n <= 0:
+        raise ValueError("n must be positive")
     if n == 1:
         return 1
     return n * recursive_factorial(n - 1)

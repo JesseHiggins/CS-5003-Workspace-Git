@@ -1,6 +1,6 @@
-''' Align Online
+''' Jesse Higgins
     CS5001
-    Sample code -- example of implementing the Stack ADT
+    Stack Project - using the module copy of a stack to implement a stack that reads in open and close brackets and pops and pushes accordingly.
 '''
 
 
@@ -48,7 +48,10 @@ class Stack:
             print(self.data[i])
 
 def bracket_stack():
-        
+    '''bracket_stack - Function for testing and importing
+        Params: none
+        returns: none
+    '''
     my_stack = Stack(5)
     cmd = input("Enter brackets: ")
     for i in cmd:
