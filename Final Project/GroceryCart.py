@@ -5,6 +5,8 @@
     4/10/24
     GroceryCart class that contains list of item ids for FoodItems'''
 
+from FoodItem import FoodItem
+
 class GroceryCart:
     ''' GroceryCart - holds FoodItem ids and user id
         Attributes: 
@@ -26,4 +28,8 @@ class GroceryCart:
 
     def add_item(self, name, item_url):
 
-        
+        name = FoodItem(item_url)
+
+        name.scrape_data()
+
+        self.cart_list += name.product_info

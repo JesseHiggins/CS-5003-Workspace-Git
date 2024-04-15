@@ -30,7 +30,7 @@ class FoodItem:
         self.quantity = item_quantity
         self.product_info = []
 
-    def scrape_date(self):
+    def scrape_data(self):
         
         URL = self.url
         page = requests.get(URL)
