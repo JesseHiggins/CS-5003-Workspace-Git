@@ -6,6 +6,8 @@
     GroceryCart class that contains list of item ids for FoodItems'''
 
 from FoodItem import FoodItem
+from bs4 import BeautifulSoup
+import requests
 
 class GroceryCart:
     ''' GroceryCart - holds FoodItem ids and user id
@@ -26,10 +28,47 @@ class GroceryCart:
         self.cart_list = []
         self.user_id = user_id
 
-    def add_item(self, name, item_url):
+    def scrape_data(self, URL_List):
+        
+        URL = self.url
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+
+        results = soup.find(id="quantity_")
+        if results:
+            product_info = {
+                "id": results.get("data-id"),
+                "name": results.get("data-name"),
+                "price": results.get("data-price"),
+            }
+
+        else:
+            print("Product information not found.")
+
+    def add_item(self, item_url):
 
         name = FoodItem(item_url)
 
         name.scrape_data()
 
-        self.cart_list += name.product_info
+        self.cart_list.append(name)
+
+    def remove_item(self, string_food_name):
+
+        for food in self.cart_list:
+
+            if food.name == string_food_name:
+
+                self.cart_list.remove(food)
+
+
+    def print_cart(self):
+
+        if len(self.cart_list) > 0:
+
+            for item in self.cart_list:
+
+                print(f"Product Name: {item.name}\nProduct Price: {item.price} \n")
+        
+        else:
+            print("The cart is empty.")

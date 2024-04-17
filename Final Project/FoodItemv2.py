@@ -13,7 +13,7 @@ class FoodItem:
         Attributes: product id, name, price, quantity
         Methods: scrape_data'''
 
-    def __init__(self, item_url, item_id = 000000, item_name = '', item_price = 0, item_quantity = ''):
+    def __init__(self, item_url):
         ''' Constructor
             Parameters:
                 self
@@ -24,11 +24,31 @@ class FoodItem:
                 item_quantity - quantity or variant of product'''
 
         self.url = item_url
-        self.id = item_id
-        self.name = item_name
-        self.price = item_price
-        self.quantity = item_quantity
         self.product_info = []
 
+        URL = self.url
+        page = requests.get(URL)
+        soup = BeautifulSoup(page.content, "html.parser")
+
+        results = soup.find(id="quantity_")
+        if results:
+            self.product_info = {
+                "id": results.get("data-id"),
+                "name": results.get("data-name"),
+                "price": results.get("data-price"),
+            }
+            self.id = results.get("data-id")
+            self.name = results.get("data-name")
+            self.price = results.get("data-price")
+            
+            print(self.product_info)
+        else:
+            print("Product information not found.")
+
+    def __str__(self):
+
+        print(f"Product Name: {self.name} - Product Price: {self.price} \n")
+
+        
 
     
