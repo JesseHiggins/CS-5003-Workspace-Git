@@ -18,7 +18,7 @@ def main():
 
     while URL != "0":
 
-        URL_List += URL
+        URL_List.append(URL)
         URL = input("Enter a URL for a food item from the Hannafords website or press 0 to end: ")
 
     Cart.scrape_data(URL_List)

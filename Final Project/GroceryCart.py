@@ -48,7 +48,7 @@ class GroceryCart:
                     "name": results.get("data-name"),
                     "price": results.get("data-price"),
                 }
-                self.product_info_list += product_info
+                self.product_info_list.append(product_info)
 
             else:
                 print("Product information not found.")
@@ -59,7 +59,7 @@ class GroceryCart:
         
         for product_info in self.product_info_list:
 
-            product_info["name"] = FoodItem(product_info["name"], product_info["price"])
+            product_info['name'] = FoodItem(product_info['name'], product_info['price'])
 
             self.cart_list.append("name")
 
@@ -92,4 +92,4 @@ class GroceryCart:
 
     def __str__(self):
 
-        return print(f"Grocery Cart:\nUser Id: {self.user_id}\nNumber of Items:")
+        return f"{self.user_id}'s Grocery Cart\nUser Id: {self.user_id}\nNumber of Items: {len(self.cart_list)}"

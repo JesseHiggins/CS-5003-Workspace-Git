@@ -29,5 +29,5 @@ class FoodItem:
 
     def __str__(self):
         ''' Prints info about object name and price'''
-        return print(f"Product Name: {self.name} - Product Price: {self.price} \n")
+        return f"Product Name: {self.name} - Product Price: {self.price} \n"
     
