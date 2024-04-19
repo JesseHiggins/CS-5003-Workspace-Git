@@ -22,36 +22,51 @@ class GroceryCart:
     def __init__(self, user_id):
         ''' Constructor
             Parameters:
-                cart_list
+                product_info_list - list of dictionaries of product information from url scraping
+                cart_list - list of fooditem objects intiated with data from the product_info_list
                 user_id'''
         
+        self.product_info_list = []
         self.cart_list = []
         self.user_id = user_id
 
     def scrape_data(self, URL_List):
+        ''' scrapes data for a list of URLs of food items from the hannafords website
+            parameters:
+                self
+                URL_List - list of urls intiated from user input in the main driver
+                '''
+        for Item_URL in URL_List:
+
+            URL = Item_URL
+            page = requests.get(URL)
+            soup = BeautifulSoup(page.content, "html.parser")
+
+            results = soup.find(id="quantity_")
+            if results:
+                product_info = {
+                    "name": results.get("data-name"),
+                    "price": results.get("data-price"),
+                }
+                self.product_info_list += product_info
+
+            else:
+                print("Product information not found.")
+
+    def add_items(self):
+        ''' Adds items from product_info dictionaries in product_info_list
+            Parameters: Self'''
         
-        URL = self.url
-        page = requests.get(URL)
-        soup = BeautifulSoup(page.content, "html.parser")
+        for product_info in self.product_info_list:
 
-        results = soup.find(id="quantity_")
-        if results:
-            product_info = {
-                "id": results.get("data-id"),
-                "name": results.get("data-name"),
-                "price": results.get("data-price"),
-            }
+            product_info["name"] = FoodItem(product_info["name"], product_info["price"])
 
-        else:
-            print("Product information not found.")
+            self.cart_list.append("name")
 
-    def add_item(self, item_url):
+            self.print_cart()
 
-        name = FoodItem(item_url)
-
-        name.scrape_data()
-
-        self.cart_list.append(name)
+            # Resets product_info_list to use again so there are not duplicate items from it
+            self.product_info_list.clear()
 
     def remove_item(self, string_food_name):
 
@@ -60,7 +75,9 @@ class GroceryCart:
             if food.name == string_food_name:
 
                 self.cart_list.remove(food)
-
+                print(f"{food} was removed from the cart.")
+            else:
+                print("Item not found.")
 
     def print_cart(self):
 
@@ -72,3 +89,7 @@ class GroceryCart:
         
         else:
             print("The cart is empty.")
+
+    def __str__(self):
+
+        return print(f"Grocery Cart:\nUser Id: {self.user_id}\nNumber of Items:")

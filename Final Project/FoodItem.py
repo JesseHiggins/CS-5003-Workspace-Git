@@ -13,22 +13,21 @@ class FoodItem:
         Attributes: product id, name, price, quantity
         Methods: scrape_data'''
 
-    def __init__(self, item_url, item_id = 000000, item_name = '', item_price = 0, item_quantity = ''):
+    def __init__(self, item_name = '', item_price = 0):
         ''' Constructor
-            Parameters:
+            Attributes:
                 self
                 url - url of item on hannafords website
                 item_id - id of product
                 item_name - name of product
                 item_price - price of product
-                item_quantity - quantity or variant of product'''
+                item_quantity - quantity or variant of product
+            Methods'''
 
-        self.url = item_url
-        self.id = item_id
         self.name = item_name
         self.price = item_price
-        self.quantity = item_quantity
-        self.product_info = []
 
-
+    def __str__(self):
+        ''' Prints info about object name and price'''
+        return print(f"Product Name: {self.name} - Product Price: {self.price} \n")
     
