@@ -59,25 +59,32 @@ class GroceryCart:
         
         for product_info in self.product_info_list:
 
-            product_info['name'] = FoodItem(product_info['name'], product_info['price'])
+            name = product_info['name']
+            price = product_info['price']
 
-            self.cart_list.append("name")
+            food_item = FoodItem(name, price)
 
-            self.print_cart()
+            self.cart_list.append(food_item)
+
+            print(f"Item added:\n{food_item}")
 
             # Resets product_info_list to use again so there are not duplicate items from it
-            self.product_info_list.clear()
+        self.product_info_list.clear()
 
     def remove_item(self, string_food_name):
 
-        for food in self.cart_list:
+        cart_length_intial = len(self.cart_list)
 
-            if food.name == string_food_name:
+        for food_object in self.cart_list:
 
-                self.cart_list.remove(food)
-                print(f"{food} was removed from the cart.")
-            else:
-                print("Item not found.")
+            if food_object.name == string_food_name:
+
+                self.cart_list.remove(food_object)
+                print(f"{food_object} was removed from the cart.")
+
+        if cart_length_intial == len(self.cart_list):
+                
+            print("Item not found.")
 
     def print_cart(self):
 

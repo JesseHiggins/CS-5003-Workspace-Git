@@ -7,6 +7,7 @@
 
 from GroceryCart import GroceryCart
 from FoodItem import FoodItem
+import requests
 
 def main():
 
@@ -25,6 +26,24 @@ def main():
     Cart.add_items()
 
     print(Cart)
+
+    while True:
+        option = input("Do you want to:\n1. Add an item to the cart\n2. Remove an item from the cart\n3. Print the cart\n4. Exit\n")
+        if option == "1":
+            URL = input("Enter a URL for a food item from the Hannafords website: ")
+            URL_List.append(URL)
+            Cart.scrape_data(URL_List)
+            Cart.add_items()
+            print(Cart)
+        elif option == "2":
+            string_name = input("Enter the name of the item you want to remove: ")
+            Cart.remove_item(string_name)
+            print(Cart)
+        elif option == "3":
+            Cart.print_cart()
+            print(Cart)
+        elif option == "4":
+            break
 
 if __name__ == "__main__":
     main()
